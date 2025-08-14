@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Result</title>
+    <link rel="icon" href="{{url_for('static',filename='pics/logo.png')}}" type="image/png" sizes="80x80px">
+    <style>
+      body,
+        html {
+            min-height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .box-wrapper {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
+        #box3 {
+            padding-top: 45px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            /*border: solid 1px green*/
+        }
+
+        #box4 {
+            flex-grow: 2;
+            background:#EBEDEF;
+            min-height:500px;
+        }
+
+        .middle-column {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .middle-column div {
+            flex-grow: 1;
+            margin: 0 8px;
+
+        }
+
+        .middle-column div+div {
+            margin-top: 8px
+        }
+
+        #box8 {
+            flex-grow: 1;
+            /*border: solid 1px black*/
+
+        }
+        .rect1{
+            width:400px;
+            color:black;
+            background:#EBEDEF;
+            text-align:left;
+            border-width:thick;
+            border-color:green;
+            padding-left:20px;
+        }
+        .rect2{
+            height:80px;
+            width:400px;
+            color:black;
+            background:#EBEDEF;
+            text-align:center;
+            padding-left:5px;
+
+
+        }
+        .rect{
+            height:500 px;
+            width:400px;
+            color:white;
+            background:#CB4335;
+            text-align:center;
+
+        }
+
+
+    </style>
+</head>
+
+    </style>
+</head>
+<!--<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="#">Heart Disease Diagnosis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Analysis</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Prediction</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<body>
+-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <img src="{{url_for('static',filename='pics/logo2.jpg')}}" height="35px" width="35px">
+      <a class="navbar-brand" href="#">Heart Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+              
+            <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('about')}}">About us</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Prediction</a>
+          </li>
+          </ul>
+          </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+  <br>
+<div class="box-wrapper">
+
+
+
+        <div align="center">
+        <div class="rect" >
+            <h3>RESULT</h3>
+        </div>
+    </div>
+        <div id="box3" style="padding-top:1px">
+            <div id="box8">
+                <div align="left" style="padding-left:30px; padding-top:15px">
+        <div class="rect2" style="padding-top:15px">
+
+            <h6><p>You are at risk of developing heart disease in the next ten years. Please see your doctor or a cardiologist for further advice.</p></h6>
+            <br>
+        </div>
+
+    </div>
+
+    <br>
+
+
+
+     <div align="left" style='padding-left:30px'>
+        <div class="rect1"  >
+            <br>
+            <h5><pre>Age                              {{age}}</pre></h5>
+            <h5><pre>Gender                          {{gender}}</pre></h5>
+            <h5><pre>Bmi                            {{bmi}}</pre></h5>
+            <h5><pre>Systolic Blood Pressure        {{sysBP}}</pre></h5>
+            <h5><pre>Diastolic Blood Pressure       {{diaBP}}</pre></h5>
+            <h5><pre>Glucose                        {{glucose}}</pre></h5>
+            <h5><pre>Total Cholestrol               {{totCHol}}</pre></h5>
+            <h5><pre>Prevalent Hypertension           {{p}}</pre></h5>
+            <h5><pre>BP Medication                    {{b}}</pre></h5>
+            <h5><pre>Diabetes                         {{d}}</pre></h5>
+        </div>
+    </div>
+
+            </div>
+            <div class="middle-column" style="padding-top:15px">
+                <div id="box4" style="padding-left:30px">
+                 <br>
+                <h3>Our Suggestions to keep your heart healthy</h3>
+                <ul>
+                <li>Reduce your systolic blood pressure to below 120 by exercising regularly. Follow a healthy diet and cut down your salt
+                 or sodium intake to less than 2.4 grams daily.</li>
+                <li>Diabetes doubles your risk of having a heart attack or stroke.
+                Minimize the risk by keeping your blood sugar under tight control (100 to 120 mg/dl).</li>
+                <li>Doing Moderate Physical Activities daily for about 30 to 45 minutes helps in maintaining your weight and good health. Examples of moderate
+                exercise include gardening, washing your car, walking 2 miles (3.2 km), Bicycling 5 miles (8 km), water aerobics and swimming, playing volleyball or cricket.
+                Click<a href="{{url_for('fitness')}}"><u> here </u></a>to know more.</li>
+                <li>A proper diet is important to keep your heart healthy.Click<a href="{{url_for('bmi')}}"><u> here </u></a>to get diet suggestions.</li>
+                <li>Stop smoking as it lowers your good (HDL) cholesterol levels and doubles the risk of heart attack.Click<a href="{{url_for('QuitSmoking')}}"><u> here </u></a>to know more.</li>
+
+</ul>
+         <h4>Facts</h4><ul>
+         <li>It is estimated that approx. 23.6 million people will succumb to Cardio Vascular Disease (CVD) by 2030.</li>
+                    <li>Tobacco usage increases the risk of death due to Coronary heart disease by 2 to 3 times.</li>
+	<li>More than 50% of death of diabetic patients are attributed to cardiovascular disease.</li>
+	<li>Risk of heart diseases in women increases by 2 to 3 time after menopause. Nearly 8.6 million women meet their death due to cardiac disease annually.</li>
+	<li>Men with diabetes are at approx. five times higher risks for CVD than those without diabetes.</li>
+	</ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<style>
+
+
+
+</style>
+
+</html>

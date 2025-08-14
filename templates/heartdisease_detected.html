@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Heart Disease Detected</title>
+  <link rel="icon" href="{{url_for('static',filename='pics/logo.png')}}" type="image/png" sizes="80x80px">
+</head>
+<body class="bg-light" style="overflow-y:auto;">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{url_for('index')}}">Heart Care</a>
+  </nav>
+
+  <div class="container py-4">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Heart disease risk detected</h4>
+      <p>Based on your inputs, you are at risk of developing heart disease in the next ten years. Please consult your doctor or a cardiologist.</p>
+      <hr>
+      <p class="mb-0">We can now generate a personalized heart-healthy diet plan tailored to your dietary preferences and health profile.</p>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Your submitted information</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Age:</strong> {{age}}</li>
+              <li><strong>Gender:</strong> {{gender}}</li>
+              <li><strong>BMI:</strong> {{bmi}}</li>
+              <li><strong>Systolic BP:</strong> {{sysBP}}</li>
+              <li><strong>Diastolic BP:</strong> {{diaBP}}</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled">
+              <li><strong>Glucose:</strong> {{glucose}}</li>
+              <li><strong>Total Cholesterol:</strong> {{totCHol}}</li>
+              <li><strong>Hypertension:</strong> {{p}}</li>
+              <li><strong>BP Medication:</strong> {{b}}</li>
+              <li><strong>Diabetes:</strong> {{d}}</li>
+            </ul>
+          </div>
+        </div>
+        {% if feature_rows %}
+        <div class="table-responsive my-3">
+          <table class="table table-sm table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th>Feature</th>
+                <th>Healthy Range</th>
+                <th>Your Value</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for r in feature_rows %}
+              <tr class="table-{{ r.cls }}">
+                <td>{{ r.feature }}</td>
+                <td>{{ r.range }}</td>
+                <td>{{ r.value }}</td>
+                <td><strong>{{ r.status }}</strong></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% endif %}
+
+        {% if high_flags %}
+          <div class="alert alert-danger">
+            High-risk override applied: {{ ', '.join(high_flags) }} detected.
+          </div>
+        {% endif %}
+        <a class="btn btn-primary"
+           href="{{ url_for('diet_preferences', age=age, gender=gender, bmi=bmi, sysBP=sysBP, diaBP=diaBP, glucose=glucose, totChol=totCHol, p=p, d=d, b=b, risk_reason='high_bp' if p=='Yes' else '') }}">
+           Continue to Diet Preferences
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

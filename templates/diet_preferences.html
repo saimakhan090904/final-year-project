@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Diet Preferences</title>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{url_for('index')}}">Heart Care</a>
+  </nav>
+  <div class="container py-4">
+    <h3 class="mb-3">Get Your Personalized Diet Recommendation</h3>
+    
+    {% if bmi or weight or height or totCHol %}
+    <div class="alert alert-info">
+      <h6><strong>Your Health Data (Auto-filled from previous results):</strong></h6>
+      <div class="row">
+        {% if bmi %}<div class="col-md-3"><strong>BMI:</strong> {{ bmi }}</div>{% endif %}
+        {% if weight %}<div class="col-md-3"><strong>Weight:</strong> {{ weight }} kg</div>{% endif %}
+        {% if height %}<div class="col-md-3"><strong>Height:</strong> {{ height }} cm</div>{% endif %}
+        {% if totCHol %}<div class="col-md-3"><strong>Cholesterol:</strong> {{ totCHol }} mg/dL</div>{% endif %}
+        {% if p %}<div class="col-md-3"><strong>Hypertension:</strong> {{ p }}</div>{% endif %}
+        {% if d %}<div class="col-md-3"><strong>Diabetes:</strong> {{ d }}</div>{% endif %}
+      </div>
+      <small class="text-muted">You can modify these values if needed, or leave them as is for personalized recommendations.</small>
+      {% if request.args.get('risk_reason') %}
+      <div class="mt-2">
+        <strong>Primary Focus:</strong> <span class="badge badge-warning">{{ request.args.get('risk_reason') | replace('_',' ') | title }}</span>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    
+    <form method="POST" action="{{ url_for('diet_recommendations') }}">
+      <input type="hidden" name="risk_reason" value="{{ request.args.get('risk_reason', '') }}"/>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label>Diet Type</label>
+          <select name="diet_type" class="form-control" required>
+            <option value="veg">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="non-veg">Non-Vegetarian</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Alcohol Consumption</label>
+          <select name="alcohol" class="form-control" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Allergies / Exclusions (comma-separated)</label>
+        <input type="text" name="allergies" class="form-control" placeholder="e.g., peanuts, shellfish, lactose">
+      </div>
+
+      <hr>
+      <h5 class="mb-3">Personalization</h5>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>Weight Goal</label>
+          <select name="weight_goal" class="form-control">
+            <option value="maintain" selected>Maintain</option>
+            <option value="lose">Lose</option>
+            <option value="gain">Gain</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Activity Level</label>
+          <select name="activity_level" class="form-control">
+            <option value="sedentary">Sedentary</option>
+            <option value="moderate" selected>Moderate</option>
+            <option value="active">Active</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Smoking</label>
+          <select name="smoking" class="form-control">
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Sleep Quality</label>
+          <select name="sleep_quality" class="form-control">
+            <option value="good" selected>Good</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+      </div>
+
+      <hr>
+      <h5 class="mb-3">Health Information</h5>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>BMI</label>
+          <input type="number" step="0.1" name="bmi" class="form-control" value="{{ bmi }}" required>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Total Cholesterol</label>
+          <input type="number" step="0.1" name="totChol" class="form-control" value="{{ totCHol }}" required>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Diabetes</label>
+          <select name="diabetes" class="form-control" required>
+            <option value="{{ 1 if d=='Yes' else 0 }}" selected>{{ d }}</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label>Hypertension</label>
+          <select name="hypertension" class="form-control" required>
+            <option value="{{ 1 if p=='Yes' else 0 }}" selected>{{ p }}</option>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
+        </div>
+      </div>
+      
+
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label>Weight (kg)</label>
+          <input type="number" step="0.1" name="weight" class="form-control" value="{{ weight or '' }}">
+        </div>
+        <div class="form-group col-md-3">
+          <label>Height (cm)</label>
+          <input type="number" step="0.1" name="height" class="form-control" value="{{ height or '' }}">
+        </div>
+        <div class="form-group col-md-3">
+          <label>Age (years)</label>
+          <input type="number" name="age" class="form-control" value="{{ age or '' }}">
+        </div>
+        <div class="form-group col-md-3">
+          <label>Gender</label>
+          <select name="gender" class="form-control">
+            <option value="{{ gender or '' }}" selected>{{ gender or 'Select' }}</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">See Recommendations</button>
+      </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

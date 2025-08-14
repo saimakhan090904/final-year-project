@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Diet Recommendations</title>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{{url_for('index')}}">Heart Care</a>
+  </nav>
+  <div class="container py-4">
+    <h3 class="mb-1">Recommended Recipes</h3>
+    {% if health_messages %}
+      <div class="alert alert-warning">
+        {% for m in health_messages %}
+          • {{ m }}{% if not loop.last %}<br/>{% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if risk_reason or global_notes or cal_target or prot_target %}
+      <div class="alert alert-info py-2">
+        {% if risk_reason %}<strong>Primary focus:</strong> {{ risk_reason | replace('_',' ') | title }}.<br/>{% endif %}
+        {% if global_notes %}
+          {% for n in global_notes %}{{ n }}{% if not loop.last %}<br/>{% endif %}{% endfor %}
+        {% endif %}
+        {% if cal_target %}<br/><strong>Daily Calorie Target:</strong> {{ cal_target }} kcal{% endif %}
+        {% if prot_target %}<br/><strong>Daily Protein Target:</strong> {{ prot_target }} g{% endif %}
+        {% if risk_reason == 'high_bp' %}<br/>Limit sodium and highly processed foods; choose DASH-friendly meals (vegetables, legumes, whole grains).{% endif %}
+        {% if risk_reason == 'diabetes' %}<br/>Choose low-GI options, avoid refined sugar, and aim for higher fiber in every meal.{% endif %}
+        {% if risk_reason == 'high_cholesterol' %}<br/>Prefer plant proteins and omega-3 sources (flax, chia, walnuts); limit saturated fat.{% endif %}
+        {% if risk_reason == 'obesity' %}<br/>Aim for a sustainable calorie deficit with high-fiber meals and adequate protein.{% endif %}
+      </div>
+    {% endif %}
+    {% if recipes %}
+      <div class="row">
+        {% for r in recipes %}
+        <div class="col-md-6 mb-3">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">{{ r.get('Name', 'Recipe') }}</h5>
+              <div class="card-text flex-grow-1">
+                <div class="row">
+                  <div class="col-6">
+                    <small><strong>Calories:</strong> {{ r.get('Calories') }}</small><br>
+                    <small><strong>Fat:</strong> {{ r.get('FatContent') }}g</small><br>
+                    <small><strong>Protein:</strong> {{ r.get('ProteinContent') }}g</small><br>
+                    <small><strong>Carbs:</strong> {{ r.get('CarbohydrateContent') }}g</small>
+                  </div>
+                  <div class="col-6">
+                    <small><strong>Fiber:</strong> {{ r.get('FiberContent') }}g</small><br>
+                    <small><strong>Sugar:</strong> {{ r.get('SugarContent') }}g</small><br>
+                    <small><strong>Sodium:</strong> {{ r.get('SodiumContent') }}mg</small><br>
+                    <small><strong>Cholesterol:</strong> {{ r.get('CholesterolContent') }}mg</small>
+                  </div>
+                </div>
+                {% if r.get('fit_score') is not none %}
+                  <p class="mb-1 mt-2"><strong>Fit score:</strong> {{ r.get('fit_score') }}</p>
+                {% endif %}
+                {% if r.get('portion_multiplier') and r.get('portion_multiplier') != 1 %}
+                  <p class="mb-1"><strong>Suggested portion:</strong> x{{ r.get('portion_multiplier') }}</p>
+                {% endif %}
+              </div>
+              <button class="btn btn-primary btn-sm mt-auto" data-toggle="modal" data-target="#recipeModal{{ loop.index }}">
+                View Full Recipe
+              </button>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <!-- Recipe Modals -->
+      {% for r in recipes %}
+      <div class="modal fade" id="recipeModal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel{{ loop.index }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="recipeModalLabel{{ loop.index }}">{{ r.get('Name', 'Recipe') }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Nutrition Information -->
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h6>Nutrition Facts</h6>
+                  <table class="table table-sm">
+                    <tr><td><strong>Calories:</strong></td><td>{{ r.get('Calories') }}</td></tr>
+                    <tr><td><strong>Fat:</strong></td><td>{{ r.get('FatContent') }}g</td></tr>
+                    <tr><td><strong>Saturated Fat:</strong></td><td>{{ r.get('SaturatedFatContent') }}g</td></tr>
+                    <tr><td><strong>Cholesterol:</strong></td><td>{{ r.get('CholesterolContent') }}mg</td></tr>
+                    <tr><td><strong>Sodium:</strong></td><td>{{ r.get('SodiumContent') }}mg</td></tr>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <h6>Macronutrients</h6>
+                  <table class="table table-sm">
+                    <tr><td><strong>Protein:</strong></td><td>{{ r.get('ProteinContent') }}g</td></tr>
+                    <tr><td><strong>Carbohydrates:</strong></td><td>{{ r.get('CarbohydrateContent') }}g</td></tr>
+                    <tr><td><strong>Fiber:</strong></td><td>{{ r.get('FiberContent') }}g</td></tr>
+                    <tr><td><strong>Sugar:</strong></td><td>{{ r.get('SugarContent') }}g</td></tr>
+                  </table>
+                </div>
+              </div>
+              
+              <!-- Personalization Info -->
+              {% if r.get('fit_score') is not none or r.get('portion_multiplier') or r.get('personalization_notes') %}
+              <div class="mb-3">
+                <h6>Personalization</h6>
+                {% if r.get('fit_score') is not none %}
+                  <p><strong>Fit Score:</strong> {{ r.get('fit_score') }}</p>
+                {% endif %}
+                {% if r.get('portion_multiplier') and r.get('portion_multiplier') != 1 %}
+                  <p><strong>Suggested Portion:</strong> x{{ r.get('portion_multiplier') }}</p>
+                {% endif %}
+                {% if r.get('personalization_notes') %}
+                  <p><strong>Notes:</strong></p>
+                  <ul>
+                    {% for note in r.get('personalization_notes') %}
+                      <li>{{ note }}</li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </div>
+              {% endif %}
+              
+              <!-- Ingredients -->
+              <div class="mb-3">
+                <h6>Ingredients</h6>
+                {% if r.get('RecipeIngredientParts') %}
+                  <ul class="list-group">
+                    {% for ingredient in r.get('RecipeIngredientParts') %}
+                      <li class="list-group-item">{{ ingredient }}</li>
+                    {% endfor %}
+                  </ul>
+                {% else %}
+                  <p class="text-muted">Ingredients not available</p>
+                {% endif %}
+              </div>
+              
+              <!-- Instructions -->
+              {% if r.get('RecipeInstructions') %}
+              <div class="mb-3">
+                <h6>Instructions</h6>
+                <ol class="list-group">
+                  {% for step in r.get('RecipeInstructions') %}
+                    <li class="list-group-item">{{ step }}</li>
+                  {% endfor %}
+                </ol>
+              </div>
+              {% endif %}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div class="alert alert-warning">No recommendations found for the selected preferences. Try adjusting your filters.</div>
+    {% endif %}
+    <a class="btn btn-secondary" href="{{ url_for('index') }}">Back to Home</a>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+  </html>
+
+

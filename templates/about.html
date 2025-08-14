@@ -1,0 +1,194 @@
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>About</title>
+    <link rel="icon" href="{{url_for('static',filename='pics/logo.png')}}" type="image/png" sizes="80x80px">
+</head>
+
+<!--<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="#">Heart Disease Diagnosis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Analysis</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Prediction</a>
+            </li>
+        </ul>
+    </div>
+</nav>-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+       <img src="{{url_for('static',filename='pics/logo2.jpg')}}" height="35px" width="35px">
+
+      <a class="navbar-brand" href="#">Heart Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+              
+            <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('about')}}">About us</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Prediction</a>
+          </li>
+          </ul>
+          </div>
+    </div>
+  </nav>
+      
+
+
+<!--
+      <div class="topnav" id="myTopnav">
+        <img src="pics/logo.png"  height="70px" width="70px">
+        <a href="contactus.html">Contact Us</a>
+        <a href="our motto.html">Our Motto</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="heart.html" >Home</a>
+        <a href="aboutus.html">About Us</a>
+        
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+-->
+   
+  </header>
+<br>
+<br>
+<main role="main">
+
+  
+  <div class="container">
+    <h2 style="padding-top: 35px" ><a style="font-size: 1.5cm ">A</a>BOUT <a style="font-size: 1.5cm">U</a>S</h2>
+    <div class="about-left">
+    <p id="color">
+      Heart disease is one of the biggest causes of morbidity and mortality among the population of the world.</p>
+      <p id="color">
+      Prediction of cardiovascular disease is regarded as one of the most important subjects in the section of clinical data analysis. </p>
+      
+      <p><strong> The amount of data in the healthcare industry is huge. Data mining turns the large collection of raw healthcare data into information that can help to make informed decisions and predictions.
+      </strong></p>
+      
+      <p id="color">The aim of this project is to summarize some of the current research on predicting heart diseases using various combinations of machine learning algorithms and conclude which technique(s) are effective and efficient. Also, some future directions on prediction systems have been addressed.
+      </p>
+<!--
+      <p id="color">They motivate and encourage people to be aware of increasing health issues in India and abroad due to lack of exercise, faulty diets and preventive health check-ups.
+      </p>
+      <p><strong> Their goal is to prevent disease in every possible way and live life king-size.</strong>
+      </p>
+      <p id="color">
+      Driven by passion and determination, our doctors are constantly striving to achieve their goals by attending conferences world –wide. This keeps them updated with the latest developments in Medicine  
+  
+  
+      </p>
+-->
+    </div>
+  <center><img src="{{url_for('static',filename='pics/poster1.jpg')}}" width="700px" height="850px" style="padding-left: 20px;"></center>
+    <hr>
+      
+
+      </div><!-- /.container -->
+<!--    <h4>The specialized departments we have that are so revered by the patients...</h4><br>-->
+    <!-- Example row of columns -->
+<!--
+    <div class="row">
+      
+      <div class="col-md-4">
+        <h3>Dentistry</h3>
+        <p id="color">
+          Dentistry, also known as dental medicine and oral medicine, is a branch of medicine that consists of the study, diagnosis, prevention ...</p>
+        <p><a class="btn btn-secondary" href="dentist.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3>ENT</h3>
+        <p id="color">ENT is a medical specialty which is focused on the ears, nose, and throat.
+          ENT are also called Otorhinolaryngology which is  
+          ...</p>
+        <p><a class="btn btn-secondary" href="ent.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        
+        <h3>Physiotherapy</h3>
+        <p id="color">Worldwide the physiotherapy community is divided by name,
+          with three different primary titles used: ...</p>
+        <p><a class="btn btn-secondary" href="physio.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3>Eye Specialist</h3>
+        <p id="color">There are three different types of eye care practitioner: optometrists, opticians, and ophthalmologists.
+          Each has a different level of ...</p>
+        <p><a class="btn btn-secondary" href="eye.html" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+-->
+  </div> <!-- /container -->
+
+</main>
+
+        <footer class="container footer_full_width" style="color: white;">
+            <div >
+            <h4 style="padding-top:20px ;">Contact Us:</h4>
+            <hr style="background-color:white">
+            <div class="float-left">
+                <p >Address:  ________</p>
+                <p>Phone Number: 9876543210</p>
+                <p>Email: hriday.chikitsa@gmail.com </p>
+                <p class="float-right"><a href="#">Back to top</a></p>
+
+        </div>
+            </div>
+        </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<style>
+footer{
+  clear: both!important;
+  min-width: 100%;
+  left:0;
+  height:37%;
+  position:absolute;
+  color: white;
+  background-color:#17202A			;
+}
+#footernew{
+  font-size: large;
+}
+body {
+   background-color: #white;
+}
+
+
+
+
+
+</style>
+
+</html>

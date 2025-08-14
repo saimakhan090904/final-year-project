@@ -1,0 +1,232 @@
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Stress</title>
+    <link rel="icon" href="{{url_for('static',filename='pics/logo.png')}}" type="image/png" sizes="80x80px">
+</head>
+
+<!--<nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="#">Heart Disease Diagnosis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Analysis</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Prediction</a>
+            </li>
+        </ul>
+    </div>
+</nav>-->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <img src="{{url_for('static',filename='pics/logo2.jpg')}}" height="35px" width="35px">
+
+      <a class="navbar-brand" href="#">Heart Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+              
+            <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('about')}}">About us</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Prediction</a>
+          </li>
+          </ul>
+          </div>
+    </div>
+  </nav>
+      
+
+
+<!--
+      <div class="topnav" id="myTopnav">
+        <img src="pics/logo.png"  height="70px" width="70px">
+        <a href="contactus.html">Contact Us</a>
+        <a href="our motto.html">Our Motto</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="heart.html" >Home</a>
+        <a href="aboutus.html">About Us</a>
+        
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+-->
+   
+  </header>
+<main role="main">
+
+  
+  <div class="container">
+    <h2 style="padding-top: 100px" ><a style="font-size: 1.5cm ">S</a>TRESS <a style="font-size: 1.5cm">M</a>ANGEMENT</h2>
+      <hr>
+      <div class="about-left">
+     
+    
+    <p id="color">
+      In today’s society, stress and change often are thought of as the same thing. Stress is a physiological and psychological response to situations the body and mind find to be overwhelming. We often ask ourselves how we should manage stress. There are many ways people manage stress and reduce the overall stress of day-to-day activities. With the fast pace of work and home, and being constantly inundated with technology and still wanting to have time to connect with those around us, our lives can feel overwhelming and stressful at times.
+
+Manage how you live with these five tips to feel less stressed:</p>
+      
+      
+      <p><strong> 1. Use guided meditation.
+      </strong></p>
+      
+      <p id="color">Guided meditation is a great way to distract yourself from the stress of day-to-day life. There are many guided meditations available on the internet that can help you find 5 minutes of centered relaxation.
+      </p>
+      
+      <p><strong> 2. Practice deep breathing.
+      </strong></p>
+      
+      <p id="color">Deep breathing is a great way to reduce the activation of your sympathetic nervous system, which controls the body’s response to a perceived threat. Deep breaths taken in to a count of five seconds, held for two seconds and released to a count of five seconds, can help activate your parasympathetic nervous system, which helps reduce the overall stress and anxiety you may be experiencing.
+      </p>
+      <p><strong> 3. Maintain physical exercise and good nutrition.
+      </strong></p>
+      
+      <p id="color">Physical exercise and nutrition are two important components in how you respond to stress. When your body is healthy, your mind can be healthy and vice versa. Physical exercise is proven to be a great stress reliever and also helps to improve your overall quality of life. Nutrition is important as stress can deplete certain vitamins, such as A, B complex, C and E. Maintaining proper nutrition not only helps your body feel better, but your mind as well, which allows you to better combat stress.
+      </p>
+      <p><strong> 4. Manage social media time.
+      </strong></p>
+      
+      <p id="color">Spending time on social media sites can become stressful, not only by what we might see on them, but also because the time you are spending on social media might be best spent enjoying visiting with friends, being outside enjoying the weather or reading a great book.
+      </p>
+      
+      <p><strong> 5. Connect with others.
+      </strong></p>
+      
+      <p id="color">Humans are social beings. You need to have connections with people to feel supported. Finding a sense of community — whether at work, with a religious organization, or through shared activities, such as organized sports — is important to your well-being. Enjoying a shared activity allows you to find support and foster relationships that can be supportive in difficult times.
+      </p>
+    </div>
+      <img src="{{url_for('static',filename='pics/stress1.jpg')}}" width="550px" height="450px" style="padding-left: 20px" class="center">
+      <hr>
+    
+    <div class="about-left">
+        <p>Figuring out how stress pushes your buttons is an important step in dealing with it. Identify sources of stress in your life and look for ways to reduce and manage them. A health care professional can help you find ways to manage your stress.</p>
+
+        <p>Stress management or relaxation classes can also help. Look for them at community colleges, rehab programs, in hospitals or by calling a therapist in your community.</p>
+
+         <p>Adopting serenity in the face of life’s challenges may help improve your perception of stress and result in better quality of life and heart health.
+
+ </p>
+    </div>
+<!--
+      <p id="color">They motivate and encourage people to be aware of increasing health issues in India and abroad due to lack of exercise, faulty diets and preventive health check-ups.
+      </p>
+      <p><strong> Their goal is to prevent disease in every possible way and live life king-size.</strong>
+      </p>
+      <p id="color">
+      Driven by passion and determination, our doctors are constantly striving to achieve their goals by attending conferences world –wide. This keeps them updated with the latest developments in Medicine  
+  
+  
+      </p>
+-->
+   <!-- /.container -->
+<!--    <h4>The specialized departments we have that are so revered by the patients...</h4><br>-->
+    <!-- Example row of columns -->
+<!--
+    <div class="row">
+      
+      <div class="col-md-4">
+        <h3>Dentistry</h3>
+        <p id="color">
+          Dentistry, also known as dental medicine and oral medicine, is a branch of medicine that consists of the study, diagnosis, prevention ...</p>
+        <p><a class="btn btn-secondary" href="dentist.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3>ENT</h3>
+        <p id="color">ENT is a medical specialty which is focused on the ears, nose, and throat.
+          ENT are also called Otorhinolaryngology which is  
+          ...</p>
+        <p><a class="btn btn-secondary" href="ent.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        
+        <h3>Physiotherapy</h3>
+        <p id="color">Worldwide the physiotherapy community is divided by name,
+          with three different primary titles used: ...</p>
+        <p><a class="btn btn-secondary" href="physio.html" role="button">View details &raquo;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h3>Eye Specialist</h3>
+        <p id="color">There are three different types of eye care practitioner: optometrists, opticians, and ophthalmologists.
+          Each has a different level of ...</p>
+        <p><a class="btn btn-secondary" href="eye.html" role="button">View details &raquo;</a></p>
+      </div>
+    </div>
+-->
+  </div> <!-- /container -->
+
+</main>
+
+        <footer class="container footer_full_width" style="color: white;">
+            <div >
+            <h4 style="padding-top:20px ;">Contact Us:</h4>
+            <hr style="background-color:white">
+            <div class="float-left">
+                <p >Address:  ________</p>
+                <p>Phone Number: 9876543210</p>
+                <p>Email: hriday.chikitsa@gmail.com </p>
+                <p class="float-right"><a href="#">Back to top</a></p>
+
+        </div>
+            </div>
+        </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<style>
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+footer{
+  clear: both!important;
+  min-width: 100%;
+  left:0;
+  height:37%;
+  position:absolute;
+  color: white;
+  background-color:#17202A			;
+}
+#footernew{
+  font-size: large;
+}
+body {
+   background-color: white;
+}
+
+
+
+
+
+</style>
+
+</html>

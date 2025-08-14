@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Prediction</title>
+   <link rel="icon" href="{{url_for('static',filename='pics/logo.png')}}" type="image/png" sizes="80x80px">
+    <script>
+        function checkforblank(){
+        var errormessage="";
+        if(document.getElementById('sysBP').value==""){
+           errormessage+='please enter the value for systolic BP \n';
+           document.getElementById('sysBP').style.borderColor='red';
+
+         }
+         if(document.getElementById('diaBP').value==""){
+           errormessage+='please enter the value for diastolic BP \n';
+           document.getElementById('diaBP').style.borderColor='red';
+
+
+         }
+         if(document.getElementById('glucose').value==""){
+           errormessage+='please enter the value for glucose \n';
+           document.getElementById('glucose').style.borderColor='red';
+
+         }
+         if(document.getElementById('age').value==""){
+           errormessage+='please enter the value for age \n';
+           document.getElementById('age').style.borderColor='red';
+         }
+         if(document.getElementById('totChol').value==""){
+           errormessage+='please enter the value for total Cholestrol \n';
+           document.getElementById('totChol').style.borderColor='red';
+
+         }
+         if(document.getElementById('bmi').value==""){
+           errormessage+='please enter the value for bmi \n';
+           document.getElementById('bmi').style.borderColor='red';
+
+        }
+        if(document.getElementById('prevalentHyp').value=="Choose here"){
+           errormessage+='please enter the value for age \n';
+           document.getElementById('totChol').style.borderColor='red';
+         }
+         if(document.getElementById('male').value=="Choose here"){
+           errormessage+='please enter the value for gender \n';
+           document.getElementById('male').style.borderColor='red';
+
+         }
+         if(document.getElementById('diabetes').value=="Choose here"){
+           errormessage+='please enter the value for diabetes \n';
+           document.getElementById('diabetes').style.borderColor='red';
+
+         }
+         if(document.getElementById('BPMeds').value=="Choose here"){
+           errormessage+='please enter the value for BPMeds \n';
+           document.getElementById('BPMeds').style.borderColor='red';
+
+         }
+         if(errormessage != ""){
+         alert(errormessage);
+         return false;
+         }
+
+        }
+    </script>
+</head>
+
+<!--<nav class="navbar navbar-dark bg-dark navbar-fixed-"{{url_for('static',filename='pics/logo.png')}}"top">
+    <a class="navbar-brand" href="#">Heart Disease Diagnosis</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{url_for('index')}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Analysis</a>
+            </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{{url_for('home')}}">Prediction</a>
+            </li>
+        </ul>
+    </div>
+</nav>-->
+    <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+       <img src="{{url_for('static',filename='pics/logo2.jpg')}}" height="35px" width="35px">
+
+      <a class="navbar-brand" href="#">Heart Care</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+              
+            <a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('about')}}">About us</a>
+          </li>
+
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Prediction</a>
+          </li>
+          </ul>
+          </div>
+    </div>
+  </nav>
+
+
+    <br>
+        <div class="container">
+        <br>
+        <br>
+
+        <h5>Please note that enter all the details with respect to your report of regular health checkup</h5>
+        
+        {% set auto_bmi = request.args.get('bmi') or prefill_bmi %}
+        {% set auto_age = request.args.get('age') or prefill_age %}
+        {% set auto_gender = request.args.get('gender') or prefill_gender %}
+
+                <img src="{{url_for('static',filename='pics/ok1.png')}}" class="close" />
+
+        </div>
+
+    <div class="container-fluid">
+        <div class="col-lg-12">
+                <form action="{{ url_for('result') }}" method="post" onsubmit="return checkforblank()">
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="sysBP" class="form-label">Systolic Blood Pressure(mmHg)</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="sysBP" name="sysBP" placeholder="90-200">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="glucose" class="form-label">Enter your Glucose(mg/dl)</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="glucose" name="glucose" placeholder="60-350">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="age" class="form-label">Age</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="age" name="age" placeholder="30-75" value="{{ request.args.get('age', prefill_age or '') }}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="bmi" class="form-label">BMI</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="bmi" name="bmi" placeholder="Body Mass Index" value="{{ (request.args.get('bmi') or prefill_bmi)|round(2) if (request.args.get('bmi') or prefill_bmi) else '' }}">
+                                 <p style="color:#444; margin-top:6px;">Don't know your BMI? Calculate <a href="{{url_for('bmi')}}"><u>here</u></a></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="totChol" class="form-label">Total Cholesterol (mg/dl)</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <input type="text" class="form-control" id="totChol" name="totChol" placeholder="130-200">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="diaBP" class="form-label">Diastolic Blood Pressure(mmHg)</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                               <input type="text" class="form-control" id="diaBP" name="diaBP" placeholder="30-140">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="prevalentHyp" class="form-label">Prevalent Hypertension</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                  <select class="form-control" id="prevalentHyp" name="prevalentHyp" >
+                                    <option>Choose here</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="male" class="form-label">Gender</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="male" name="male" >
+                                    <option>Choose here</option>
+                                    <option value="1" {% if (request.args.get('gender') or prefill_gender) == 'female' %}selected{% endif %}>Female</option>
+                                    <option value="0" {% if (request.args.get('gender') or prefill_gender) == 'male' %}selected{% endif %}>Male</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="BPMeds" class="form-label">BP Medication</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="BPMeds" name="BPMeds" >
+                                    <option>Choose here</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4">
+                                 <label for="diabetes" class="form-label">Diabetes</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8">
+                                <select class="form-control" id="diabetes" name="diabetes">
+                                    <option>Choose here</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+
+                        </div>
+                        <center>
+                            <button type="submit" class="btn btn-white" value="submit" style="color:black">Submit</button>
+                        </center>
+
+                </form>
+            </div>
+        </div>
+    </div>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script>
+            document.querySelector(".close").addEventListener("click" , function(){
+                document.querySelector(".container").style.display = "none";
+             });
+
+            window.addEventListener("load" , function(){
+            setTimeout(
+             function open(event){
+                document.querySelector(".container").style.display = "block";
+             },
+             2000
+             )
+            });
+        </script>
+
+</body>
+
+<style>
+
+
+
+
+body{
+    background: #f7f7f7;
+    font-size: large;
+}
+
+.form-label{
+    color: #222 !important;
+    font-weight: 600;
+}
+
+.container{
+    width: 500px;
+    height: 250px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+
+    display: none;
+
+}
+
+.container h1{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+.container img{
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    width: 80px;
+    height: 10.5vh;
+    border: 0px;
+    outline: none;
+
+
+}
+
+</style>
+</html>
