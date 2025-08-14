@@ -1,1 +1,2 @@
 # final-year-project
+Heartguard+ is an AI-powered system that predicts heart disease risk using patient health parameters and lifestyle indicators, then provides personalized diet recommendations. It employs machine learning models (Logistic Regression, Random Forest, SVM, and Gradient Boosting) for accurate prediction and uses nutrition databases with recommendation algorithms to create tailored meal plans, offering a complete preventive healthcare solution.
